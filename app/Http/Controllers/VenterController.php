@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Venter;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class VenterController extends Controller
 {
@@ -36,7 +38,13 @@ class VenterController extends Controller
      */
     public function show(Venter $venter)
     {
-        //
+        $messages = Message::with('venter')->with('color')
+            ->where('venter_id', $venter->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return Inertia::render('venter/Messages', [
+            'messagesData' => $messages,
+        ]);
     }
 
     /**

@@ -28,12 +28,15 @@ export default function Pagination({ pagination }: PaginationProps) {
         last_page_url,
         first_page_url,
     } = pagination;
+    if (last_page === 1) {
+        return null;
+    }
     const newLinks = onEachSide(pagination, 2);
     return (
         <div className="flex items-center justify-between">
             <div className="flex flex-1 justify-between sm:hidden">
                 <a
-                    href={prev_page_url}
+                    href={prev_page_url || "#"}
                     className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                     Previous
@@ -69,7 +72,7 @@ export default function Pagination({ pagination }: PaginationProps) {
                         {newLinks.map((link) => (
                             <Link
                                 key={link.label}
-                                href={link.url}
+                                href={link.url || "#"}
                                 className={
                                     link.active
                                         ? "relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

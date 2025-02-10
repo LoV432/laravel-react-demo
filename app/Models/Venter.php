@@ -11,4 +11,9 @@ class Venter extends Model
     ];
 
     public $timestamps = false;
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

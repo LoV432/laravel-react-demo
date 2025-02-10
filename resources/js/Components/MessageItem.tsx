@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import { MessageWithVenterAndColor } from "../Types/Message";
 
 type MessageItemProps = {
@@ -8,9 +9,13 @@ export default function MessageItem({ message }: MessageItemProps) {
     const avatarUrl = `https://robohash.org/${message.venter_id}?set=set1`;
     return (
         <div
-            className="flex items-start space-x-4 p-4 rounded-lg"
+            className="flex items-start space-x-4 p-4 rounded-lg relative"
             style={{ backgroundColor: `${message.color?.color_name}10` }}
         >
+            <Link
+                href={`/venter/${message.venter.id}`}
+                className="absolute inset-0"
+            ></Link>
             <img
                 src={avatarUrl || "/placeholder.svg"}
                 alt={message.venter.user_name}

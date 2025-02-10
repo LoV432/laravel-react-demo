@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\VenterController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -11,3 +12,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('/', MessageController::class)->only(['store', 'index']);
+
+Route::resource('venter', VenterController::class)->only(['show']);
