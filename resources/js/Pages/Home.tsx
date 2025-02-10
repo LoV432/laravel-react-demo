@@ -1,27 +1,34 @@
+import MessageItem from "../Components/MessageItem";
 import Pagination from "../Components/Pagination";
 import SendMessage from "../Components/SendMessage";
 import { LaravelPagination } from "../Types/LaravelPagination";
-
-type Message = {
-    message_text: string;
-    created_at: string;
-    venter_id: number;
-    color_id: number;
-    uuid: string;
-    is_deleted: boolean;
-};
+import { MessageWithVenterAndColor } from "../Types/Message";
 
 type MessagesData = LaravelPagination & {
-    data: Message[];
+    data: MessageWithVenterAndColor[];
 };
 
 export default function Home({ messagesData }: { messagesData: MessagesData }) {
     const messages = messagesData.data;
-    const totalMessages = messages.length;
     return (
         <>
-            <div className="px-6 py-4 flex min-h-screen flex-col">
-                <SendMessage />
+            <div className="bg-gray-900 min-h-screen p-8">
+                <div className="max-w-2xl mx-auto grid gap-5">
+                    <div className="justify-self-center w-full">
+                        <SendMessage />
+                    </div>
+                    <h1 className="text-3xl font-bold text-gray-100">
+                        Messages
+                    </h1>
+                    <div className="space-y-4">
+                        {messages.map((message) => (
+                            <MessageItem key={message.uuid} message={message} />
+                        ))}
+                    </div>
+                    <Pagination pagination={messagesData} />
+                </div>
+            </div>
+            {/* <div className="px-6 py-4 flex min-h-screen flex-col bg-white">
                 <p className="text-slate-500 mt-2 text-sm">
                     {totalMessages} messages
                 </p>
@@ -46,10 +53,8 @@ export default function Home({ messagesData }: { messagesData: MessagesData }) {
                         </div>
                     </div>
                 ))}
-                <div className="border-t border-gray-200 mt-auto pt-2">
-                    <Pagination pagination={messagesData} />
-                </div>
-            </div>
+                <div className="border-t border-gray-200 mt-auto pt-2"></div>
+            </div> */}
         </>
     );
 }

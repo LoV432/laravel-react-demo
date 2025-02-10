@@ -14,9 +14,9 @@ export default function SendMessage() {
         });
     }
     return (
-        <form onSubmit={submit} className="flex flex-col w-full max-w-xl">
+        <form onSubmit={submit} className="flex flex-col w-full">
             <textarea
-                rows={3}
+                rows={5}
                 className="w-full rounded-lg border-2 border-gray-300 p-2 text-sm"
                 name="message"
                 placeholder="Whats on your mind?"
