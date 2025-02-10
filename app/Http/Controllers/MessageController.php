@@ -67,14 +67,18 @@ class MessageController extends Controller
             ]);
         }
 
-        Message::create([
-            'message_text' => $formData['message'],
-            'created_at' => now(),
-            'venter_id' => $user->id,
-            'color_id' => rand(1, 6),
-            'uuid' => Uuid::uuid4()->toString(),
-            'is_deleted' => false,
-        ]);
+        DB::insert(
+            "INSERT INTO messages (message_text, created_at, venter_id, color_id, uuid, is_deleted) VALUES (?, ?, ?, ?, ?, ?)",
+            [$formData['message'], now(), $user->id, rand(1, 6), Uuid::uuid4()->toString(), false]
+        );
+        // Message::create([
+        //     'message_text' => $formData['message'],
+        //     'created_at' => now(),
+        //     'venter_id' => $user->id,
+        //     'color_id' => rand(1, 6),
+        //     'uuid' => Uuid::uuid4()->toString(),
+        //     'is_deleted' => false,
+        // ]);
         DB::commit();
 
         return redirect()->back()->withCookie('venter_id', $venter_id, 3600);
