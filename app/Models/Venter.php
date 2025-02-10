@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venter extends Model
 {
-    public $fillable = [
+    protected $fillable = [
         'user_name',
     ];
 
