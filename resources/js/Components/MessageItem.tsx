@@ -9,7 +9,7 @@ export default function MessageItem({ message }: MessageItemProps) {
     const avatarUrl = `https://robohash.org/${message.venter_id}?set=set1`;
     return (
         <div
-            className="flex items-start space-x-4 p-4 rounded-lg relative"
+            className="flex items-start space-x-4 p-4 rounded-lg relative border-2 border-white border-opacity-10"
             style={{ backgroundColor: `${message.color?.color_name}10` }}
         >
             <Link
