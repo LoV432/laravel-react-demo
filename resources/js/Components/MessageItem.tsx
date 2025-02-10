@@ -6,7 +6,6 @@ type MessageItemProps = {
 
 export default function MessageItem({ message }: MessageItemProps) {
     const avatarUrl = `https://robohash.org/${message.venter_id}?set=set1`;
-
     return (
         <div
             className="flex items-start space-x-4 p-4 rounded-lg"

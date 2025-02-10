@@ -69,7 +69,7 @@ class MessageController extends Controller
 
         DB::insert(
             "INSERT INTO messages (message_text, created_at, venter_id, color_id, uuid, is_deleted) VALUES (?, ?, ?, ?, ?, ?)",
-            [$formData['message'], now(), $user->id, rand(1, 6), Uuid::uuid4()->toString(), false]
+            [$formData['message'], date('c'), $user->id, rand(1, 6), Uuid::uuid4()->toString(), false]
         );
         // Message::create([
         //     'message_text' => $formData['message'],
