@@ -1,3 +1,4 @@
+import Pagination from "../Components/Pagination";
 import { LaravelPagination } from "../Types/LaravelPagination";
 
 type Message = {
@@ -18,8 +19,8 @@ export default function Home({ messagesData }: { messagesData: MessagesData }) {
     const totalMessages = messages.length;
     return (
         <>
-            <div className="bg-white rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
-                <h3 className="mt-5 text-base font-medium tracking-tight">
+            <div className="px-6 py-4 flex min-h-screen flex-col">
+                <h3 className="text-base font-medium tracking-tight">
                     Welcome to Inertia with React!
                 </h3>
                 <p className="text-slate-500 mt-2 text-sm">
@@ -46,6 +47,9 @@ export default function Home({ messagesData }: { messagesData: MessagesData }) {
                         </div>
                     </div>
                 ))}
+                <div className="border-t border-gray-200 mt-auto pt-2">
+                    <Pagination pagination={messagesData} />
+                </div>
             </div>
         </>
     );
