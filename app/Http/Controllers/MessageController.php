@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Gate;
 
 class MessageController extends Controller
 {
@@ -105,7 +106,24 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        //
+        $venter_name = $request->cookie('venter_id');
+
+
+        Gate::authorize('update', [$message, $venter_name]);
+
+        $newMessage = $request->validate([
+            'message' => 'required|string|max:100',
+        ], [
+            'message.required' => 'Message is required',
+            'message.string' => 'Message must be a string',
+            'message.max' => 'Message must be less than 100 characters',
+        ]);
+
+        $message->update([
+            'message_text' => $newMessage['message'],
+        ]);
+
+        return redirect()->back();
     }
 
     /**

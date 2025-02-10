@@ -9,6 +9,7 @@ export type Color = {
 };
 
 export type Message = {
+    id: number;
     message_text: string;
     created_at: string;
     venter_id: number;

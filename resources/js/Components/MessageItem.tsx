@@ -1,11 +1,16 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { MessageWithVenterAndColor } from "../Types/Message";
+import { Pencil1Icon } from "@radix-ui/react-icons";
+import { useState } from "react";
+import EditMessage from "./EditMessage";
 
 type MessageItemProps = {
     message: MessageWithVenterAndColor;
 };
 
 export default function MessageItem({ message }: MessageItemProps) {
+    const [isEditing, setIsEditing] = useState(false);
+    const { venter_id } = usePage().props;
     const avatarUrl = `https://robohash.org/${message.venter_id}?set=set1`;
     return (
         <div
@@ -29,15 +34,30 @@ export default function MessageItem({ message }: MessageItemProps) {
                     <span className="text-xs text-gray-400">
                         {new Date(message.created_at).toLocaleString()}
                     </span>
+                    {message.venter.user_name === venter_id && (
+                        <div
+                            onClick={() => setIsEditing(!isEditing)}
+                            className="absolute -top-2 -right-3 rounded-full bg-slate-950 px-1 py-1 text-white"
+                        >
+                            <Pencil1Icon className="w-4 h-4" />
+                        </div>
+                    )}
                 </div>
-                <p
-                    className="mt-1 text-gray-300"
-                    style={{ color: message.color?.color_name }}
-                >
-                    {message.is_deleted
-                        ? "This message has been deleted."
-                        : message.message_text}
-                </p>
+                {isEditing ? (
+                    <EditMessage
+                        message={message}
+                        setIsEditing={setIsEditing}
+                    />
+                ) : (
+                    <p
+                        className="mt-1 text-gray-300"
+                        style={{ color: message.color?.color_name }}
+                    >
+                        {message.is_deleted
+                            ? "This message has been deleted."
+                            : message.message_text}
+                    </p>
+                )}
             </div>
         </div>
     );

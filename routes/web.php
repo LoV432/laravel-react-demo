@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 //     ]);
 // });
 
-Route::resource('/', MessageController::class)->only(['store', 'index']);
+Route::resource('messages', MessageController::class)->only(['store', 'index', 'update']);
+Route::resource('/', MessageController::class)->only(['index']);
 
 Route::resource('venter', VenterController::class)->only(['show']);
