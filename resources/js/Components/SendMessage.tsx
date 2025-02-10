@@ -7,7 +7,7 @@ export default function SendMessage() {
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        post("/messages", {
+        post("/", {
             onSuccess: () => {
                 reset();
             },

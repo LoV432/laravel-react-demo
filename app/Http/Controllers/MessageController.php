@@ -7,6 +7,7 @@ use App\Models\Venter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
+use Inertia\Inertia;
 
 class MessageController extends Controller
 {
@@ -15,7 +16,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Home', [
+            'messagesData' => Message::with('venter')->with('color')->orderBy('created_at', 'desc')->paginate(10),
+            // 'pageProps' => DB::select('select * from messages order by created_at desc limit 10'),
+        ]);
     }
 
     /**
