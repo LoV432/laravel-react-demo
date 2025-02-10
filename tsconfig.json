@@ -12,6 +12,9 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
+        "paths": {
+            "@/*": ["./resources/js/*"]
+        },
         "target": "ES2017"
     },
     "include": ["**/*.ts", "**/*.tsx"],
