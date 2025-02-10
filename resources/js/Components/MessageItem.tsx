@@ -9,7 +9,7 @@ export default function MessageItem({ message }: MessageItemProps) {
     return (
         <div
             className="flex items-start space-x-4 p-4 rounded-lg"
-            style={{ backgroundColor: `${message.color.color_name}10` }}
+            style={{ backgroundColor: `${message.color?.color_name}10` }}
         >
             <img
                 src={avatarUrl || "/placeholder.svg"}
@@ -27,7 +27,7 @@ export default function MessageItem({ message }: MessageItemProps) {
                 </div>
                 <p
                     className="mt-1 text-gray-300"
-                    style={{ color: message.color.color_name }}
+                    style={{ color: message.color?.color_name }}
                 >
                     {message.is_deleted
                         ? "This message has been deleted."
