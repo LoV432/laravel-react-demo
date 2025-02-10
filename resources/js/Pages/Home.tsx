@@ -1,4 +1,5 @@
 import Pagination from "../Components/Pagination";
+import SendMessage from "../Components/SendMessage";
 import { LaravelPagination } from "../Types/LaravelPagination";
 
 type Message = {
@@ -20,9 +21,7 @@ export default function Home({ messagesData }: { messagesData: MessagesData }) {
     return (
         <>
             <div className="px-6 py-4 flex min-h-screen flex-col">
-                <h3 className="text-base font-medium tracking-tight">
-                    Welcome to Inertia with React!
-                </h3>
+                <SendMessage />
                 <p className="text-slate-500 mt-2 text-sm">
                     {totalMessages} messages
                 </p>

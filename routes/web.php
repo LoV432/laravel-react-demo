@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
@@ -10,3 +11,5 @@ Route::get('/', function () {
         // 'pageProps' => DB::select('select * from messages order by created_at desc limit 10'),
     ]);
 });
+
+Route::resource('messages', MessageController::class)->only(['store']);
