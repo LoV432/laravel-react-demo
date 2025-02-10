@@ -47,7 +47,7 @@ export default function Pagination({ pagination }: PaginationProps) {
             </div>
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between gap-8 flex-row-reverse">
                 <div>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-white">
                         Showing{" "}
                         <span className="font-medium">{current_page}</span> of{" "}
                         <span className="font-medium">{last_page}</span> pages
