@@ -15,4 +15,8 @@ class Color extends Model
     // Eloquent ORM automatically adds created_at and updated_at
     // i am trying to copy the original DB structure which has no timestamps
     public $timestamps = false;
+
+    protected $fillable = [
+        'color_name',
+    ];
 }
