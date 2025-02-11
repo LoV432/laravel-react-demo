@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     supervisor \
-    libsqlite3-dev
+    libsqlite3-dev \
+    libonig-dev \
+    libzip-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
