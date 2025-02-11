@@ -8,13 +8,13 @@ if [ ! -f .env ]; then
 fi
 
 # Create SQLite database
-if [ ! -f database/database.sqlite ]; then
-    touch database/database.sqlite
+if [ ! -f db/database.sqlite ]; then
+    touch db/database.sqlite
 fi
 
 # Set permissions
 chmod -R 775 storage bootstrap/cache
-chmod 777 database/database.sqlite
+chmod 777 db/database.sqlite
 
 # Run migrations
 php artisan migrate --force
