@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     nginx \
     nodejs \
     npm \
-    supervisor
+    supervisor \
+    libsqlite3-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
