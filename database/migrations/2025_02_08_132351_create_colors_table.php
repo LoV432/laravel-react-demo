@@ -21,7 +21,7 @@ return new class extends Migration
 
         $colors = ['#b3001b', '#c073de', '#edd892', '#3685b5', '#7bf1a8', '#FE938C', '#3BF4FB'];
         foreach ($colors as $color) {
-            Color::factory()->create(['color_name' => $color]);
+            Color::create(['color_name' => $color]);
         }
     }
 
