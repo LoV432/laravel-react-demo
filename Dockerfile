@@ -39,6 +39,7 @@ RUN composer install --no-interaction --no-scripts --no-dev
 COPY . .
 
 # Install npm dependencies and build assets
+RUN npm install @rollup/rollup-linux-x64-gnu --save-optional
 RUN npm install && npm run build
 
 # Configure nginx
