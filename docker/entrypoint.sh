@@ -7,9 +7,6 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Generate application key
-php artisan key:generate --force
-
 # Create SQLite database
 if [ ! -f database/database.sqlite ]; then
     touch database/database.sqlite
