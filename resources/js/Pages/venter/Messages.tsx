@@ -15,21 +15,19 @@ export default function Messages({
     console.log(messagesData);
     return (
         <>
-            <div className="bg-gray-900 min-h-screen p-8">
-                <div className="max-w-2xl mx-auto grid gap-5">
-                    <h1 className="text-3xl font-bold text-gray-100 text-center">
-                        Messages for{" "}
-                        <span className="block">
-                            {messagesData.data[0].venter.user_name}
-                        </span>
-                    </h1>
-                    <div className="space-y-4">
-                        {messagesData.data.map((message) => (
-                            <MessageItem key={message.uuid} message={message} />
-                        ))}
-                    </div>
-                    <Pagination pagination={messagesData} />
+            <div className="max-w-2xl mx-auto grid gap-5 w-full">
+                <h1 className="text-3xl font-bold text-gray-100 text-center">
+                    Messages for{" "}
+                    <span className="block">
+                        {messagesData.data[0].venter.user_name}
+                    </span>
+                </h1>
+                <div className="space-y-4">
+                    {messagesData.data.map((message) => (
+                        <MessageItem key={message.uuid} message={message} />
+                    ))}
                 </div>
+                <Pagination pagination={messagesData} />
             </div>
         </>
     );

@@ -12,21 +12,17 @@ export default function Home({ messagesData }: { messagesData: MessagesData }) {
     const messages = messagesData.data;
     return (
         <>
-            <div className="bg-gray-900 min-h-screen p-8">
-                <div className="max-w-2xl mx-auto grid gap-5">
-                    <div className="justify-self-center w-full">
-                        <SendMessage />
-                    </div>
-                    <h1 className="text-3xl font-bold text-gray-100">
-                        Messages
-                    </h1>
-                    <div className="space-y-4">
-                        {messages.map((message) => (
-                            <MessageItem key={message.uuid} message={message} />
-                        ))}
-                    </div>
-                    <Pagination pagination={messagesData} />
+            <div className="max-w-2xl mx-auto grid gap-5 w-full">
+                <div className="justify-self-center w-full">
+                    <SendMessage />
                 </div>
+                <h1 className="text-3xl font-bold text-gray-100">Messages</h1>
+                <div className="space-y-4">
+                    {messages.map((message) => (
+                        <MessageItem key={message.uuid} message={message} />
+                    ))}
+                </div>
+                <Pagination pagination={messagesData} />
             </div>
             {/* <div className="px-6 py-4 flex min-h-screen flex-col bg-white">
                 <p className="text-slate-500 mt-2 text-sm">
