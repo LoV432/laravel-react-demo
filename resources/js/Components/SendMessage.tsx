@@ -23,7 +23,9 @@ export default function SendMessage() {
                 value={data.message}
                 onChange={(e) => setData("message", e.target.value)}
             />
-            {errors.message && <div>{errors.message}</div>}
+            {errors.message && (
+                <div className="text-red-700">{errors.message}</div>
+            )}
             <button
                 type="submit"
                 disabled={processing}

@@ -28,8 +28,8 @@ export default function MessageItem({ message }: MessageItemProps) {
                 className="w-10 h-10 rounded-full"
             />
             <div className="flex-1">
-                <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-gray-200">
+                <div className="flex items-center justify-between flex-wrap">
+                    <h3 className="font-semibold text-gray-200 text-ellipsis text-nowrap overflow-hidden max-w-40">
                         {message.venter.user_name}
                     </h3>
                     <span className="text-xs text-gray-400">
@@ -58,11 +58,9 @@ export default function MessageItem({ message }: MessageItemProps) {
                         className="mt-1 text-gray-300"
                         style={{ color: message.color?.color_name }}
                     >
-                        {message.is_deleted ? (
-                            "This message has been deleted."
-                        ) : (
-                            <pre>{message.message_text}</pre>
-                        )}
+                        {message.is_deleted
+                            ? "This message has been deleted."
+                            : message.message_text}
                     </p>
                 )}
             </div>
