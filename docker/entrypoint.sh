@@ -19,4 +19,4 @@ chmod 777 db/database.sqlite
 # Run migrations
 php artisan migrate --force
 
-composer run dev
+composer run prod
