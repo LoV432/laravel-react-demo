@@ -8,7 +8,7 @@ if [ ! -f .env ]; then
 fi
 
 # Generate application key
-php artisan key:generate
+php artisan key:generate --force
 
 # Create SQLite database
 if [ ! -f database/database.sqlite ]; then
@@ -20,6 +20,6 @@ chmod -R 775 storage bootstrap/cache
 chmod 777 database/database.sqlite
 
 # Run migrations
-php artisan migrate
+php artisan migrate --force
 
 exec "$@"
