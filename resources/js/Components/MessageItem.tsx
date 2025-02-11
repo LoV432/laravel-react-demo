@@ -3,6 +3,7 @@ import { MessageWithVenterAndColor } from "../Types/Message";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import EditMessage from "./EditMessage";
+import DeleteMessage from "./DeleteMessage";
 
 type MessageItemProps = {
     message: MessageWithVenterAndColor;
@@ -34,14 +35,18 @@ export default function MessageItem({ message }: MessageItemProps) {
                     <span className="text-xs text-gray-400">
                         {new Date(message.created_at).toLocaleString()}
                     </span>
-                    {message.venter.user_name === venter_id && (
-                        <div
-                            onClick={() => setIsEditing(!isEditing)}
-                            className="absolute -top-2 -right-3 rounded-full bg-slate-950 px-1 py-1 text-white"
-                        >
-                            <Pencil1Icon className="w-4 h-4" />
-                        </div>
-                    )}
+                    {message.venter.user_name === venter_id &&
+                        !message.is_deleted && (
+                            <>
+                                <div
+                                    onClick={() => setIsEditing(!isEditing)}
+                                    className="absolute -top-2 -right-3 rounded-full bg-slate-950 px-1 py-1 text-white"
+                                >
+                                    <Pencil1Icon className="w-4 h-4" />
+                                </div>
+                                <DeleteMessage message={message} />
+                            </>
+                        )}
                 </div>
                 {isEditing ? (
                     <EditMessage

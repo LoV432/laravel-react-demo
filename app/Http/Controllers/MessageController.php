@@ -129,8 +129,15 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Message $message)
+    public function destroy(Message $message, Request $request)
     {
-        //
+        $venter_name = $request->cookie('venter_id');
+        Gate::authorize('update', [$message, $venter_name]);
+
+        $message->update([
+            'is_deleted' => true,
+        ]);
+
+        return redirect()->back();
     }
 }

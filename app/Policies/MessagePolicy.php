@@ -55,9 +55,19 @@ class MessagePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Message $message): bool
+    public function delete(?User $user, Message $message, string $venter_name): bool
     {
-        return false;
+        if (!$venter_name || !Uuid::isValid($venter_name)) {
+            return false;
+        }
+        $venter_id = Venter::select('id')->where('user_name', $venter_name)->first();
+        if (!$venter_id) {
+            return false;
+        }
+        if ($message->venter_id != $venter_id->id) {
+            return false;
+        }
+        return true;
     }
 
     /**
