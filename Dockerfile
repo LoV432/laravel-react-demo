@@ -40,14 +40,14 @@ COPY . .
 RUN npm install && npm run build
 
 # Configure nginx
-COPY docker/nginx.conf /etc/nginx/sites-available/default
+RUN cp docker/nginx.conf /etc/nginx/sites-available/default
 RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 # Configure supervisor
-COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN cp docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Entrypoint and permissions
-COPY docker/entrypoint.sh /usr/local/bin/
+RUN cp entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN chown -R www-data:www-data /var/www/html/storage
 RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
