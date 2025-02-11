@@ -53,9 +53,11 @@ export default function MessageItem({ message }: MessageItemProps) {
                         className="mt-1 text-gray-300"
                         style={{ color: message.color?.color_name }}
                     >
-                        {message.is_deleted
-                            ? "This message has been deleted."
-                            : message.message_text}
+                        {message.is_deleted ? (
+                            "This message has been deleted."
+                        ) : (
+                            <pre>{message.message_text}</pre>
+                        )}
                     </p>
                 )}
             </div>
